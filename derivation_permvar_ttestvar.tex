@@ -1,0 +1,132 @@
+%% LyX 2.3.4.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{babel}
+\begin{document}
+$n_{0}$ number of observations in control
+
+$n_{1}$number of obserations in intervention
+
+$N=n_{0}+n_{1}$ 
+
+$y_{i}$outcomes under control $i=1,...,N$
+
+$k$ true intervention effect, $\hat{k}$ estimate of the intervention
+effect
+
+$r_{i}$ allocation to control and intervention (0 is control 1 is
+intervention)
+
+$\sum r_{i}=n_{1}$
+
+We can esimate $\hat{k}$ as follows:
+
+\begin{eqnarray*}
+\hat{k} & = & \frac{\sum r_{i}\left(y_{i}+k\right)}{\sum r_{i}}-\frac{\sum\left(1-r_{i}\right)y_{i}}{\sum\left(1-r_{i}\right)}\\
+ & = & \frac{\sum r_{i}y_{i}+k\sum r_{i}}{n_{1}}-\frac{\sum y_{i}-\sum r_{i}y_{i}}{n_{0}}\\
+ & = & \frac{n_{0}\left(\sum r_{i}y_{i}+k\sum r_{i}\right)-n_{1}\left(\sum y_{i}-\sum r_{i}y_{i}\right)}{n_{o}n_{1}}\\
+ & = & \frac{\left(n_{0}+n_{1}\right)\sum r_{i}y_{i}-n_{1}\sum y_{i}+kn_{0}n_{1}}{n_{0}n_{1}}\\
+ & = & \frac{\left(n_{0}+n_{1}\right)\sum r_{i}y_{i}-n_{1}\sum y_{i}}{n_{0}n_{1}}+k
+\end{eqnarray*}
+
+We have one particular allocation into 2 groups $j'$. But there are
+$J$ different allocations
+
+$j=1,...,J$, let 
+
+Note $J=\frac{N!}{n_{1}!n_{0}!}$
+
+What is the variance if the outcomes are fixed and the randomisation
+varies?
+
+\begin{eqnarray*}
+V(\hat{k}) & = & V\left(\frac{\left(n_{0}+n_{1}\right)\sum_{i}r_{ij}y_{i}-n_{1}\sum_{i}y_{i}}{n_{0}n_{1}}+k\right)\\
+ & = & \frac{\left(n_{0}+n_{1}\right)^{2}V\left(\sum_{i}r_{ij}y_{i}\right)}{n_{0}^{2}n_{1}^{2}}\\
+ & = & \left(\frac{1}{n_{0}}+\frac{1}{n_{1}}\right)^{2}V\left(\sum_{i}r_{ij}y_{i}\right)
+\end{eqnarray*}
+
+Let $z_{j}=\sum_{i}r_{ij}y_{i}$. 
+
+We calculate the variance of $z_{j}$ as follows
+
+\[
+V\left[z_{j}\right]=E\left[z_{j}^{2}\right]-E\left[z_{j}\right]^{2}
+\]
+
+Splitting this into two parts:
+
+\begin{eqnarray*}
+E\left[z_{j}\right] & = & \frac{\sum_{j}z_{j}}{J}\\
+ & = & \frac{1}{J}\left(\sum_{j}\sum_{i}r_{ij}y_{i}\right)\\
+ & = & \frac{1}{J}\left(\sum_{i}y_{i}\sum_{j}r_{ij}\right)\\
+ & = & \frac{n_{1}!n_{0}!}{N!}\frac{\left(N-1\right)!}{\left(n_{1}-1\right)!n_{0}!}\sum y_{i}\\
+ & = & \frac{n_{1}}{n_{0}+n_{1}}\sum y_{i}\\
+ & = & n_{1}\overline{y}
+\end{eqnarray*}
+
+\begin{align*}
+E\left[z_{j}^{2}\right] & =\frac{\sum_{j}z_{j}^{2}}{J}\\
+ & =\frac{1}{J}\left(\sum_{j}\left[\sum_{i}r_{ij}y_{i}\right]^{2}\right)\\
+ & =\frac{1}{J}\left[\frac{\left(N-1\right)!}{\left(n_{1}-1\right)!n_{0}!}\sum y_{i}^{2}+\frac{\left(N-2\right)!}{\left(n_{1}-2\right)!n_{0}!}\sum_{i}\sum_{l}y_{i}y_{l}-\frac{\left(N-2\right)!}{\left(n_{1}-2\right)!n_{0}!}\sum y_{i}^{2}\right]\\
+ & =\frac{n_{1}!n_{0}!}{N!}\left[\left(\frac{\left(N-1\right)!\left(n_{1}-2\right)!-\left(N-2\right)!\left(n_{1}-1\right)!}{\left(n_{1}-1\right)!\left(n_{1}-2\right)!n_{0}!}\right)\sum y_{i}^{2}+\frac{\left(N-2\right)!}{\left(n_{1}-2\right)!n_{0}!}\sum_{i}\sum_{l}y_{i}y_{l}\right]\\
+ & =\frac{n_{1}!n_{0}!}{N!}\left[\left(\frac{\left(N-2\right)!}{\left(n_{1}-1\right)!\left(n_{0}-1\right)!}\right)\sum y_{i}^{2}+\frac{\left(N-2\right)!}{\left(n_{1}-2\right)!n_{0}!}\sum_{i}\sum_{l}y_{i}y_{l}\right]\\
+ & =\frac{n_{1}n_{0}}{N\left(N-1\right)}\sum y_{i}^{2}+\frac{n_{1}\left(n_{1}-1\right)}{N\left(N-1\right)}\sum_{i}\left[y_{i}\sum_{l}y_{l}\right]\\
+ & =\frac{n_{1}n_{0}}{N\left(N-1\right)}\sum y_{i}^{2}+\frac{n_{1}\left(n_{1}-1\right)}{N\left(N-1\right)}\left(N\overline{y}\right)^{2}\\
+ & =\frac{n_{1}n_{0}}{N\left(N-1\right)}\sum y_{i}^{2}+\frac{Nn_{1}\left(n_{1}-1\right)}{\left(N-1\right)}\overline{y}^{2}
+\end{align*}
+
+Bringing the two components back together:
+
+\begin{align*}
+V\left[z_{j}\right] & =E\left[z_{j}^{2}\right]-E\left[z_{j}\right]^{2}\\
+ & =\frac{n_{1}n_{0}}{N\left(N-1\right)}\sum y_{i}^{2}+\frac{Nn_{1}\left(n_{1}-1\right)}{\left(N-1\right)}\overline{y}^{2}-n_{1}^{2}\overline{y}^{2}\\
+ & =\frac{n_{1}n_{0}}{N\left(N-1\right)}\sum y_{i}^{2}+\frac{Nn_{1}\left(n_{1}-1\right)-n_{1}^{2}\left(N-1\right)}{\left(N-1\right)}\overline{y}^{2}\\
+ & =\frac{n_{1}n_{0}}{N\left(N-1\right)}\sum y_{i}^{2}-\frac{n_{1}n_{0}}{\left(N-1\right)}\overline{y}^{2}\\
+ & =\frac{n_{1}n_{0}}{n_{0}+n_{1}}\frac{\sum y_{i}^{2}-\left(n_{0}+n_{1}\right)\overline{y}^{2}}{\left(n_{0}+n_{1}-1\right)}\\
+ & =\frac{n_{1}n_{0}}{n_{0}+n_{1}}\frac{\sum\left(y_{i}-\overline{y}\right)^{2}}{\left(n_{0}+n_{1}-1\right)}
+\end{align*}
+
+\begin{align*}
+var\left(\hat{k}\right) & =\left(\frac{1}{n_{0}}+\frac{1}{n_{1}}\right)^{2}Var\left(z_{j}\right)\\
+ & =\left(\frac{1}{n_{0}}+\frac{1}{n_{1}}\right)^{2}\frac{n_{1}n_{0}}{n_{0}+n_{1}}\frac{\sum\left(y_{i}-\overline{y}\right)^{2}}{\left(n_{0}+n_{1}-1\right)}\\
+ & =\left(\frac{1}{n_{0}}+\frac{1}{n_{1}}\right)\frac{\sum\left(y_{i}-\overline{y}\right)^{2}}{\left(n_{0}+n_{1}-1\right)}
+\end{align*}
+
+This is almost identical to the variance of of the student's t-test
+assuming equal variance (the denominator is $n_{0}+n_{1}-2$ for the
+t-test).
+
+\section*{What is the variance if the randomisation is fixed, but the outcomes
+are variable? }
+
+$\sigma=V(Y_{i})$
+
+\begin{eqnarray*}
+V(\hat{k}) & = & V\left(\frac{\left(n_{0}+n_{1}\right)\sum r_{i}y_{i}-n_{1}\sum y_{i}}{n_{0}n_{1}}+k\right)\\
+ & = & \frac{\left(n_{0}+n_{1}\right)^{2}\sum r_{i}^{2}V\left(y_{i}\right)-n_{1}^{2}\sum V\left(y_{i}\right)}{n_{0}^{2}n_{1}^{2}}\\
+ & = & \frac{\left(n_{0}+n_{1}\right)^{2}\sum r_{i}^{2}\sigma^{2}-n_{1}^{2}\left(n_{0}+n_{1}\right)\sigma^{2}}{n_{0}^{2}n_{1}^{2}}\\
+ & = & \sigma^{2}\frac{n_{1}\left(n_{0}+n_{1}\right)^{2}-n_{1}^{2}\left(n_{0}+n_{1}\right)}{n_{0}^{2}n_{1}^{2}}\\
+ & = & \sigma^{2}\frac{n_{1}\left(n_{0}+n_{1}\right)\left[\left(n_{0}+n_{1}\right)-n_{1}\right]}{n_{0}^{2}n_{1}^{2}}\\
+ & = & \sigma^{2}\frac{n_{0}n_{1}\left(n_{0}+n_{1}\right)}{n_{0}^{2}n_{1}^{2}}\\
+ & = & \sigma^{2}\frac{n_{0}+n_{1}}{n_{0}n_{1}}\\
+ & = & \sigma^{2}\left(\frac{1}{n_{0}}+\frac{1}{n_{1}}\right)
+\end{eqnarray*}
+
+Assuming the same variance in the control and intervention, we usually
+estimate $\hat{\sigma}^{2}$as 
+\begin{eqnarray*}
+\hat{\sigma}^{2} & = & \frac{\left(n_{0}-1\right)\sum_{r_{i}=0}\left(y_{i}-\overline{y}\right)^{2}/\left(n_{0}-1\right)+\left(n_{1}-1\right)\sum_{r_{i}=1}\left(y_{i}+k-\left(\overline{y}+k)\right)\right)^{2}/\left(n_{1}-1\right)}{\left(n_{0}+n_{1}-2\right)}\\
+ & = & \frac{\sum\left(y_{i}-\overline{y}\right)^{2}}{\left(n_{0}+n_{1}-2\right)}
+\end{eqnarray*}
+
+Substituting this into the the variance of $\hat{k}$
+\begin{eqnarray*}
+V(\hat{k}) & = & \left(\frac{1}{n_{0}}+\frac{1}{n_{1}}\right)\frac{\sum\left(y_{i}-\overline{y}\right)^{2}}{\left(n_{0}+n_{1}-2\right)}
+\end{eqnarray*}
+
+This is the variance of a t-test (assuming equal variance in control
+and intervention)
+\end{document}
